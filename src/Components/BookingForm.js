@@ -105,7 +105,7 @@ const BookingForm = () => {
         event.preventDefault();
 
         const newBooking = {
-            id: Date.now (),
+            // id: Date.now,
             name: name,
             phone: phone,
             service: service,
@@ -115,7 +115,7 @@ const BookingForm = () => {
 
         try {
             const response = await axios.post(`http://localhost:5050/bookings`, newBooking);
-            dispatch({ type: 'ADD_BOOKING', payload: response.json });
+            dispatch({ type: 'ADD_BOOKING', payload: response.data });
             window.location.reload();
             console.log ("update");
         } catch (error) {
@@ -123,14 +123,17 @@ const BookingForm = () => {
         }
     };
 
+
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5050/bookings/${id}`);
+           await axios.delete(`http://localhost:5050/bookings/${id}`);
             dispatch({ type: 'DELETE_BOOKING', payload: id });
+            
         } catch (error) {
             console.error('Error deleting booking:', error);
         }
     };
+
 
     const handleEdit = (booking) => {
         dispatch({ type: 'EDIT_BOOKING', payload: booking });

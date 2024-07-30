@@ -52,17 +52,14 @@ router.post('/', async (req, res) => {
 
 // DELETE 
 router.delete('/:id', async (req, res) => {
-  const id = req.params.id;
-
   try {
-    
-    const result = await db.collection('bookings').deleteOne({ _id: new ObjectId(id) });
+      await Booking.findByIdAndDelete(req.params.id);
 
-    if (result.deletedCount > 0) {
-      res.json({ message: 'Booking deleted' });
-    } else {
-      res.status(404).json({ message: 'Booking not found' });
-    }
+    // if (result.deletedCount > 0) {
+    //   res.json({ message: 'Booking deleted' });
+    // } else {
+    //   res.status(404).json({ message: 'Booking not found' });
+    // }
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -74,7 +71,7 @@ router.put('/:id', async (req, res) => {
   const updates = req.body;
 
   try {
-    // Convert id to ObjectId
+    
     await Booking.findByIdAndUpdate(id, updates)
     return res.status(200).send({message: 'Bookings updated successfully'})
   } catch (err) {
