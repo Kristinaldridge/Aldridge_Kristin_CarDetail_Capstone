@@ -49,3 +49,9 @@
 .service-card.flipped .back {
     transform: rotateY(0deg);
 }
+
+.back p {
+    text-align: center;
+    font-weight: bold;
+    color: red;
+}

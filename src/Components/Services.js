@@ -27,7 +27,7 @@ const Services = () => {
                     </div>
                     <div className="back">
                         <ul>
-                            <li>$80</li>
+                            <p>$80</p>
                             <li>Full vacuum, interior wipe down, window cleaning, door jambs cleaning</li>
                             <li>Exterior Foam wash, towel dry, wheels deep cleaned, air freshener</li>
                         </ul>
@@ -39,7 +39,7 @@ const Services = () => {
                     </div>
                     <div className="back">
                         <ul>
-                            <li>$140</li>
+                            <p>$140</p>
                             <li>Vacuuming and deep cleaning of carpets and upholstery. Leather cleaning. </li>
                             <li>Dashboard and console cleaning and polishing.</li>
                             <li>Interior glass cleaning and odor elimination.</li>
@@ -52,7 +52,7 @@ const Services = () => {
                     </div>
                     <div className="back">
                         <ul>
-                            <li>$200</li>
+                            <p>$200</p>
                             <li>Standard Detail +</li>
                             <li>Bug removal, clay bar treatment, hand wax</li>
                             <li>Conditioning leather seats</li>
@@ -66,7 +66,7 @@ const Services = () => {
                     </div>
                     <div className="back">
                         <ul>
-                            <li>Please call for QUOTE</li>
+                            <p>Please call for QUOTE</p>
                             <li>Clean and prepare windows thoroughly.</li>
                             <li>Precisely apply tint film without creases or bubbles.</li>
                             <li>Trim excess film and ensure a flawless finish.</li>
