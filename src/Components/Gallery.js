@@ -1,50 +1,37 @@
 import React, { useState, useEffect } from 'react';
 
-const DogImage = () => {
-  const [dogImage, setDogImage] = useState('https://cdn2.thedogapi.com/images/mufxR-Px7.jpg'); 
-  const apiKey = 'live_AjjJU2oCfHEmb1SAzT7JqmkD7p2t1PEse2HWJRG4hb0gru53rsD1q1rB1aLjxwkE'; 
+const CarImage = () => {
+    const [imageUrl, setImageUrl] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  useEffect(() => {
-   
-    const fetchRandomDogImage = async () => {
-      try {
-        const response = await fetch('https://api.thedogapi.com/v1/images/r1ZfomsN7', {
-          headers: {
-            'x-api-key': apiKey
-          }
-        });
+    useEffect(() => {
+       
+        fetch('https://freetestapi.com/api/v1/cars/12')
+            .then(response => response.json())
+            .then(data => {
+                
+                setImageUrl(data.image);
+                setLoading(false);
+            })
+            .catch(err => {
+                setError(err);
+                setLoading(false);
+            });
+    }, []);
 
-        if (!response.ok) {
-          throw new Error('Network response error');
-        }
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
-        const data = await response.json();
-
-        if (data.url) {
-          setDogImage(data.url);
-        } else {
-          throw new Error('API Issue');
-        }
-      } catch (error) {
-        console.error('Error fetching dog image:', error);
-    
-        setDogImage('https://cdn2.thedogapi.com/images/mufxR-Px7.jpg'); 
-      }
-    };
-
-    fetchRandomDogImage();
-  }, []); 
-
-  return (
-    <div>
-      <h2>Image Test </h2>
-      <img src={dogImage} alt="Random Dog" style={{ width: '300px', height: 'auto' }} />
-    </div>
-  );
+    return (
+        <div className='services-section'>
+            <h1>Gallery</h1>
+            <img src={imageUrl} alt="Car" />
+        </div>
+    );
 };
 
-export default DogImage;
-
+export default CarImage;
 
 
 // import React from 'react';

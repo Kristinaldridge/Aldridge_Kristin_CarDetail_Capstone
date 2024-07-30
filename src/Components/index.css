@@ -49,6 +49,7 @@ main {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+
 footer {
   text-align: center;
   margin-top: 20px;
@@ -60,6 +61,41 @@ footer {
   width: 100%;
 }
 .button {
-  border: 2px black solid;
+  border: 2px gold solid;
+  background-color: gold;
+  color: white;
  
+}
+
+.hero-section {
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+} 
+
+.services-section {
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+} 
+
+.gallery-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.gallery-section {
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
 }
