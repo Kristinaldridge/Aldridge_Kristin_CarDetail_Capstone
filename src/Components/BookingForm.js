@@ -1,7 +1,7 @@
-import React, { useReducer } from 'react';
+import React, {useReducer, useEffect } from 'react';
+import axios from 'axios';
 import './booking-form.css';
 import './index.css';
-
 
 const initialState = {
     bookings: [],
@@ -13,11 +13,12 @@ const initialState = {
     editingBookingId: null
 };
 
-
 const reducer = (state, action) => {
     switch (action.type) {
         case 'UPDATE_FIELD':
             return { ...state, [action.field]: action.payload };
+        case 'SET_BOOKINGS':
+            return { ...state, bookings: action.payload };
         case 'ADD_BOOKING':
             return {
                 ...state,
@@ -31,7 +32,7 @@ const reducer = (state, action) => {
         case 'DELETE_BOOKING':
             return {
                 ...state,
-                bookings: state.bookings.filter(booking => booking.id !== action.payload)
+                bookings: state.bookings.filter(booking => booking._id !== action.payload)
             };
         case 'EDIT_BOOKING':
             return {
@@ -41,11 +42,11 @@ const reducer = (state, action) => {
                 service: action.payload.service,
                 date: action.payload.date,
                 time: action.payload.time,
-                editingBookingId: action.payload.id
+                editingBookingId: action.payload._id
             };
         case 'SAVE_BOOKING':
             const updatedBookings = state.bookings.map(booking =>
-                booking.id === action.payload.id
+                booking._id === action.payload._id
                     ? {
                         ...booking,
                         name: action.payload.name,
@@ -86,11 +87,25 @@ const BookingForm = () => {
     const { bookings, name, phone, service, date, time, editingBookingId } = state;
     const services = ['Exterior Detailing-Standard', 'Exterior Detailing-Premium', 'Interior Detailing', 'Window Tinting'];
 
-    const handleSubmit = (event) => {
+    useEffect(() => {
+       
+        const fetchBookings = async () => {
+            try {
+                const response = await axios.get('http://localhost:5050/bookings')
+                dispatch({ type: 'SET_BOOKINGS', payload: response.data.data });
+            } catch (error) {
+                console.error('Error fetching bookings:', error);
+            }
+        };
+
+        fetchBookings();
+    }, []);
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         const newBooking = {
-            id: Date.now(), 
+            id: Date.now (),
             name: name,
             phone: phone,
             service: service,
@@ -98,19 +113,32 @@ const BookingForm = () => {
             time: time
         };
 
-        dispatch({ type: 'ADD_BOOKING', payload: newBooking });
+        try {
+            const response = await axios.post(`http://localhost:5050/bookings`, newBooking);
+            dispatch({ type: 'ADD_BOOKING', payload: response.json });
+            window.location.reload();
+            console.log ("update");
+        } catch (error) {
+            console.error('Error adding booking:', error);
+        }
     };
 
-    const handleDelete = (id) => {
-        dispatch({ type: 'DELETE_BOOKING', payload: id });
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://localhost:5050/bookings/${id}`);
+            dispatch({ type: 'DELETE_BOOKING', payload: id });
+        } catch (error) {
+            console.error('Error deleting booking:', error);
+        }
     };
 
     const handleEdit = (booking) => {
         dispatch({ type: 'EDIT_BOOKING', payload: booking });
     };
 
-    const handleSave = (event) => {
+    const handleSave = async (event) => {
         event.preventDefault();
+        console.log("save");
 
         const updatedBooking = {
             id: editingBookingId,
@@ -121,7 +149,13 @@ const BookingForm = () => {
             time: time
         };
 
-        dispatch({ type: 'SAVE_BOOKING', payload: updatedBooking });
+        try {
+            const response = await axios.put(`http://localhost:5050/bookings/${editingBookingId}`, updatedBooking);
+            dispatch({ type: 'SAVE_BOOKING', payload: response.data });
+            window.location.reload();
+        } catch (error) {
+            console.error('Error updating booking:', error);
+        }
     };
 
     const handleCancel = () => {
@@ -132,6 +166,7 @@ const BookingForm = () => {
         <section className="booking-section">
             <h1>Book an Appointment</h1>
             <form onSubmit={editingBookingId !== null ? handleSave : handleSubmit} id="booking-form">
+        
                 <label htmlFor="name">Your Name:</label>
                 <input
                     type="text"
@@ -190,7 +225,7 @@ const BookingForm = () => {
             </form>
             <div id="booking-list">
                 {bookings.map((booking) => (
-                    <div key={booking.id} className="booking-card">
+                    <div key={booking._id} className="booking-card">
                         <h2>{booking.service}</h2>
                         <p><strong>Name:</strong> {booking.name}</p>
                         <p><strong>Phone:</strong> {booking.phone}</p>
@@ -199,7 +234,7 @@ const BookingForm = () => {
                         <div className="booking-details">
                             <p>Confirmation number: ABC123</p>
                             <button className="edit-btn" onClick={() => handleEdit(booking)}>Edit</button>
-                            <button className="delete-btn" onClick={() => handleDelete(booking.id)}>Delete</button>
+                            <button className="delete-btn" onClick={() => handleDelete(booking._id)}>Delete</button>
                         </div>
                     </div>
                 ))}
