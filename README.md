@@ -16,11 +16,11 @@ You may also see any lint errors in the console.
 
 
 ## Main Features 
-React Router Integration: For client-side routing between Home, Services, Gallery, Booking, and About Us.
-Booking Management: Users can create, edit, and delete booking appointments.
-Dynamic Image Gallery: Fetches and displays car images from an external API.
-State Management: Uses useReducer and useState for managing state.
-API Integration: Communicates with backend services for bookings and external APIs for car images.
+    - React Router Integration: For client-side routing between Home, Services, Gallery, Booking, and About Us.
+    - Booking Management: Users can create, edit, and delete booking appointments.
+    - Dynamic Image Gallery: Fetches and displays car images from an external API.
+    - State Management: Uses useReducer and useState for managing state.
+    - API Integration: Communicates with backend services for bookings and external APIs for car images.
 
 ## File Structure
 
@@ -54,7 +54,7 @@ server/
     server.mjs- Connection to Express.js API and  MongoDB for data storage.
 
 
-Contributing
+## Contributing
 If you'd like to contribute to this project, please follow these steps:
 
 Fork the repository.
