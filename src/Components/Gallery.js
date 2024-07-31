@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import defaultImageUrl from '../Images/defaultcar2.jpg';
+import defaultImageUrl2 from '../Images/defaultcar.jpg';
+import car3 from '../Images/car3.jpg';
+
 
 const CarImage = () => {
     const [imageUrl, setImageUrl] = useState('');
@@ -29,51 +32,15 @@ const CarImage = () => {
     return (
         <div className='services-section'>
             <h1>Gallery</h1>
-            <img src={imageUrl} alt="Car" />
-            {/* setImageUrl({defaultImageUrl}); */}
-            {/* width='300px'height='400px' */}
-            
+            <img src={defaultImageUrl} alt="Car" width='400px' height='400px'/>
+    
+            <img src={defaultImageUrl2} alt="Car" width='400px' height='400px'/>
+            <img src={car3} alt="Car" width='400px' height='400px'/>
+            {/* this image did not have a jpg file associated with the api call. it is added to demonstrate, use of fetch function. */}
+            <img src={imageUrl} alt="Car" width='400px' height='400px'/>
         </div>
     );
 };
 
 export default CarImage;
 
-
-// import React from 'react';
-
-// const Gallery = () => {
-//     return (
-//         <section className="gallery-section">
-//             <h1>Gallery</h1>
-//             <div className="gallery">
-//                 <div className="gallery-item">
-//                     <img src="car1.jpg" alt="Car 1" />
-//                     <p>Car 1 - Description</p>
-//                 </div>
-//                 <div className="gallery-item">
-//                     <img src="car2.jpg" alt="Car 2" />
-//                     <p>Car 2 - Description</p>
-//                 </div>
-//                 <div className="gallery-item">
-//                     <img src="car2.jpg" alt="Car 2" />
-//                     <p>Car 2 - Description</p>
-//                 </div>
-//                 <div className="gallery-item">
-//                     <img src="car2.jpg" alt="Car 2" />
-//                     <p>Car 2 - Description</p>
-//                 </div>
-//                 <div className="gallery-item">
-//                     <img src="car2.jpg" alt="Car 2" />
-//                     <p>Car 2 - Description</p>
-//                 </div>
-//                 <div className="gallery-item">
-//                     <img src="car2.jpg" alt="Car 2" />
-//                     <p>Car 2 - Description</p>
-//                 </div>
-//             </div>
-//         </section>
-//     );
-// }
-
-// export default Gallery;
