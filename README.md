@@ -41,7 +41,7 @@ FRONT END:
 
 
 public/
-index.html – HTML template for the application.
+    index.html – HTML template for the application.
 
 BACKEND: 
 server/

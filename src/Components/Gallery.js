@@ -7,7 +7,7 @@ const CarImage = () => {
 
     useEffect(() => {
        
-        fetch('https://freetestapi.com/api/v1/cars/12')
+        fetch('https://freetestapi.com/api/v1/cars/1')
             .then(response => response.json())
             .then(data => {
                 
