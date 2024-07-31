@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import defaultImageUrl from '../Images/defaultcar2.jpg';
 
 const CarImage = () => {
     const [imageUrl, setImageUrl] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
 
     useEffect(() => {
        
@@ -15,7 +17,8 @@ const CarImage = () => {
                 setLoading(false);
             })
             .catch(err => {
-                setError(err);
+                // setImageUrl({defaultImageUrl});
+                 setError(err);
                 setLoading(false);
             });
     }, []);
@@ -27,6 +30,9 @@ const CarImage = () => {
         <div className='services-section'>
             <h1>Gallery</h1>
             <img src={imageUrl} alt="Car" />
+            {/* setImageUrl({defaultImageUrl}); */}
+            {/* width='300px'height='400px' */}
+            
         </div>
     );
 };
