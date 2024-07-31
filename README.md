@@ -47,7 +47,11 @@ index.html – HTML template for the application.
 BACKEND: 
 server/
 
-
+    models/
+        bookingModel.js- The Booking model is defined using Mongoose and represents the schema for bookings in the auto detailing service application
+    routes/
+        booking.mjs- This Express.js API provides endpoints for managing bookings in an auto detailing service application. It allows for creating, retrieving, updating, and deleting bookings. 
+    server.mjs- Connection to Express.js API and  MongoDB for data storage.
 
 
 Contributing
